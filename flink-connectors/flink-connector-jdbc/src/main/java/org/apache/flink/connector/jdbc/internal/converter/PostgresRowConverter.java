@@ -68,24 +68,36 @@ public class PostgresRowConverter extends AbstractJdbcRowConverter {
             LogicalType arrayElementType = arrayType.getElementType();
             LogicalTypeRoot elementRootType = arrayElementType.getTypeRoot();
             switch (elementRootType) {
-                case INTEGER: {
-                    return (val, index, statement) -> statement.setObject(index, val.getArray(index).toIntArray());
-                }
-                case BOOLEAN: {
-                    return (val, index, statement) -> statement.setObject(index, val.getArray(index).toBooleanArray());
-                }
-                case BIGINT: {
-                    return (val, index, statement) -> statement.setObject(index, val.getArray(index).toLongArray());
-                }
-                case FLOAT: {
-                    return (val, index, statement) -> statement.setObject(index, val.getArray(index).toFloatArray());
-                }
-                case DOUBLE: {
-                    return (val, index, statement) -> statement.setObject(index, val.getArray(index).toDoubleArray());
-                }
-                case SMALLINT: {
-                    return (val, index, statement) -> statement.setObject(index, val.getArray(index).toShortArray());
-                }
+                case INTEGER:
+                    {
+                        return (val, index, statement) ->
+                                statement.setObject(index, val.getArray(index).toIntArray());
+                    }
+                case BOOLEAN:
+                    {
+                        return (val, index, statement) ->
+                                statement.setObject(index, val.getArray(index).toBooleanArray());
+                    }
+                case BIGINT:
+                    {
+                        return (val, index, statement) ->
+                                statement.setObject(index, val.getArray(index).toLongArray());
+                    }
+                case FLOAT:
+                    {
+                        return (val, index, statement) ->
+                                statement.setObject(index, val.getArray(index).toFloatArray());
+                    }
+                case DOUBLE:
+                    {
+                        return (val, index, statement) ->
+                                statement.setObject(index, val.getArray(index).toDoubleArray());
+                    }
+                case SMALLINT:
+                    {
+                        return (val, index, statement) ->
+                                statement.setObject(index, val.getArray(index).toShortArray());
+                    }
             }
             return (val, index, statement) -> {
                 throw new IllegalStateException(
